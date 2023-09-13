@@ -1,5 +1,6 @@
 import 'package:ecommerce_application/src/widgets/header_text.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -41,52 +42,57 @@ class HomePage extends StatelessWidget {
                   shrinkWrap: true,
                   itemCount: 10,
                   itemBuilder: (context, index) {
-                    return Container(
-                      margin: EdgeInsets.only(
-                        left: 5,
-                        right: 5,
-                        bottom: 10,
-                        top: 5,
-                      ),
-                      color: Colors.green,
-                      height: 100,
-                      child: Row(
-                        children: [
-                          Container(
-                            width: 100,
-                            decoration: BoxDecoration(
-                                image: DecorationImage(
-                                    image: AssetImage(
-                                        'assets/images/testimage.jpg')),
-                                borderRadius: BorderRadius.circular(20)),
-                          ),
-                          Expanded(
-                            child: Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  HeaderText(
-                                    text: 'PRODUCT NAME',
-                                    size: 20,
-                                  ),
-                                  Text('Category Name'),
-                                  SizedBox(
-                                    height: 5,
-                                  ),
-                                  Row(
-                                    mainAxisAlignment: MainAxisAlignment.end,
-                                    children: [
-                                      HeaderText(
-                                        text: 'PRICE',
-                                      )
-                                    ],
-                                  )
-                                ],
+                    return InkWell(
+                      onTap: () {
+                        context.go('/details');
+                      },
+                      child: Container(
+                        margin: EdgeInsets.only(
+                          left: 5,
+                          right: 5,
+                          bottom: 10,
+                          top: 5,
+                        ),
+                        color: Colors.green,
+                        height: 100,
+                        child: Row(
+                          children: [
+                            Container(
+                              width: 100,
+                              decoration: BoxDecoration(
+                                  image: DecorationImage(
+                                      image: AssetImage(
+                                          'assets/images/testimage.jpg')),
+                                  borderRadius: BorderRadius.circular(20)),
+                            ),
+                            Expanded(
+                              child: Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    HeaderText(
+                                      text: 'PRODUCT NAME',
+                                      size: 20,
+                                    ),
+                                    Text('Category Name'),
+                                    SizedBox(
+                                      height: 5,
+                                    ),
+                                    Row(
+                                      mainAxisAlignment: MainAxisAlignment.end,
+                                      children: [
+                                        HeaderText(
+                                          text: 'PRICE',
+                                        )
+                                      ],
+                                    )
+                                  ],
+                                ),
                               ),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
                     );
                   }),
