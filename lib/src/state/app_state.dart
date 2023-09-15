@@ -13,6 +13,7 @@ class ApplicationState extends ChangeNotifier {
 
   bool _loggedIn = false;
   bool get loggedIn => _loggedIn;
+  int rezervationCount = 0;
 
   Future<void> init() async {
     await Firebase.initializeApp(
@@ -30,5 +31,10 @@ class ApplicationState extends ChangeNotifier {
       }
       notifyListeners();
     });
+  }
+
+  void incrementCount() {
+    rezervationCount++;
+    notifyListeners();
   }
 }

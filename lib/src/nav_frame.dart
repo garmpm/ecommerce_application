@@ -1,4 +1,5 @@
 import 'package:ecommerce_application/src/auth/auth.dart';
+import 'package:ecommerce_application/src/pages/history_page.dart';
 import 'package:ecommerce_application/src/pages/home_page.dart';
 import 'package:ecommerce_application/src/state/app_state.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -27,11 +28,15 @@ class _NavFrameState extends State<NavFrame> {
         break;
       case 1:
         page = Placeholder();
-        appBarLabel = 'Browse by Categories';
-        break;
-      case 2:
-        page = Placeholder();
         appBarLabel = 'Search';
+        break;
+      case 3:
+        page = HistoryPage();
+        appBarLabel = 'History';
+        break;
+      case 4:
+        page = Placeholder();
+        appBarLabel = 'Notifications';
         break;
       default:
         throw UnimplementedError('no widget for $selectedIndex');
@@ -39,16 +44,6 @@ class _NavFrameState extends State<NavFrame> {
 
     return LayoutBuilder(builder: (context, constraints) {
       return Scaffold(
-        appBar: AppBar(
-          title: Text(appBarLabel),
-          actions: [
-            IconButton(
-                onPressed: () {
-                  context.go('/settings');
-                },
-                icon: Icon(Icons.settings))
-          ],
-        ),
         drawer: Drawer(
             child: ListView(
           children: [
@@ -72,16 +67,52 @@ class _NavFrameState extends State<NavFrame> {
         bottomNavigationBar: NavigationBar(
           destinations: [
             NavigationDestination(
-              icon: Icon(Icons.home),
+              icon: Icon(
+                Icons.home_outlined,
+                size: 40,
+              ),
               label: 'Home',
             ),
             NavigationDestination(
-              icon: Icon(Icons.category),
-              label: 'Categories',
+              icon: Icon(
+                Icons.search,
+                size: 40,
+              ),
+              label: 'Search',
+            ),
+            Padding(
+              padding: const EdgeInsets.all(10.0),
+              child: Container(
+                width: 40,
+                decoration: BoxDecoration(
+                  color: Colors.grey,
+                  borderRadius: BorderRadius.circular(40),
+                ),
+                child: Center(
+                  child: Text(
+                    'R',
+                    style: TextStyle(
+                      fontWeight: FontWeight.w600,
+                      fontSize: 40,
+                      color: Colors.white,
+                    ),
+                  ),
+                ),
+              ),
             ),
             NavigationDestination(
-              icon: Icon(Icons.search),
-              label: 'Search',
+              icon: Icon(
+                Icons.list_alt_outlined,
+                size: 40,
+              ),
+              label: 'History',
+            ),
+            NavigationDestination(
+              icon: Icon(
+                Icons.notifications_outlined,
+                size: 40,
+              ),
+              label: 'Notifications',
             ),
           ],
           selectedIndex: selectedIndex,

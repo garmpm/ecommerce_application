@@ -1,104 +1,194 @@
+import 'package:ecommerce_application/src/state/app_state.dart';
 import 'package:ecommerce_application/src/widgets/header_text.dart';
+import 'package:ecommerce_application/src/widgets/link_box.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
+import 'package:provider/provider.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
 
   @override
   Widget build(BuildContext context) {
+    var appState = context.watch<ApplicationState>();
+
     return Scaffold(
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Center(
-            child: Container(
-              height: 300,
-              color: Colors.red,
-              child: Container(
-                  height: 300,
-                  width: 300,
-                  alignment: Alignment.center,
+      body: Padding(
+        padding: const EdgeInsets.all(25.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            SafeArea(
+                child: Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                Container(
+                  height: 50,
+                  width: 50,
                   decoration: BoxDecoration(
-                    image: DecorationImage(
-                      image: AssetImage('assets/images/testimage.jpg'),
-                    ),
+                    color: Colors.green,
                     borderRadius: BorderRadius.circular(50),
-                  )),
+                  ),
+                  child: Center(
+                    child: Text(
+                      'NP',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.w600,
+                        fontSize: 25,
+                      ),
+                    ),
+                  ),
+                )
+              ],
+            )),
+            SizedBox(
+              height: 20,
             ),
-          ),
-          SizedBox(
-            height: 20,
-          ),
-          HeaderText(text: 'Featured Products'),
-          SizedBox(
-            height: 20,
-          ),
-          Expanded(
-            child: Container(
-              height: 900,
-              child: ListView.builder(
-                  physics: AlwaysScrollableScrollPhysics(),
-                  shrinkWrap: true,
-                  itemCount: 10,
-                  itemBuilder: (context, index) {
-                    return InkWell(
-                      onTap: () {
-                        context.go('/details');
-                      },
-                      child: Container(
-                        margin: EdgeInsets.only(
-                          left: 5,
-                          right: 5,
-                          bottom: 10,
-                          top: 5,
-                        ),
-                        color: Colors.green,
-                        height: 100,
-                        child: Row(
+            HeaderText(text: 'Hello, [NAME]'),
+            SizedBox(
+              height: 20,
+            ),
+            HeaderText(text: 'Open Now:'),
+            SizedBox(
+              height: 20,
+            ),
+            Expanded(
+              child: Container(
+                height: 2000,
+                child: ListView.builder(
+                    physics: AlwaysScrollableScrollPhysics(),
+                    shrinkWrap: false,
+                    itemCount: 10,
+                    itemBuilder: (context, index) {
+                      return Center(
+                        child: Column(
                           children: [
                             Container(
-                              width: 100,
-                              decoration: BoxDecoration(
-                                  image: DecorationImage(
-                                      image: AssetImage(
-                                          'assets/images/testimage.jpg')),
-                                  borderRadius: BorderRadius.circular(20)),
-                            ),
-                            Expanded(
-                              child: Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    HeaderText(
-                                      text: 'PRODUCT NAME',
-                                      size: 20,
-                                    ),
-                                    Text('Category Name'),
-                                    SizedBox(
-                                      height: 5,
-                                    ),
-                                    Row(
-                                      mainAxisAlignment: MainAxisAlignment.end,
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  LinkBox(
+                                    width: 150,
+                                    height: 160,
+                                    route: '/details',
+                                    child: Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.start,
                                       children: [
-                                        HeaderText(
-                                          text: 'PRICE',
+                                        Image.asset(
+                                          'assets/images/513.png',
+                                          height: 65,
+                                        ),
+                                        Padding(
+                                          padding: const EdgeInsets.all(8.0),
+                                          child: Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceBetween,
+                                            children: [
+                                              Column(
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
+                                                mainAxisSize: MainAxisSize.min,
+                                                children: [
+                                                  HeaderText(
+                                                    text: '513',
+                                                  ),
+                                                  HeaderText(
+                                                    text: 'Italian restaurant',
+                                                    size: 8,
+                                                  ),
+                                                ],
+                                              ),
+                                              Icon(Icons.favorite_border),
+                                            ],
+                                          ),
+                                        ),
+                                        Container(
+                                          height: 30,
+                                          decoration: BoxDecoration(
+                                              color: Colors.greenAccent,
+                                              borderRadius:
+                                                  BorderRadius.circular(10)),
+                                          child: TextButton(
+                                              onPressed: () {
+                                                appState.incrementCount();
+                                              },
+                                              child: HeaderText(
+                                                text: "Make a rezervation",
+                                                size: 11,
+                                              )),
                                         )
                                       ],
-                                    )
-                                  ],
-                                ),
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    width: 30,
+                                  ),
+                                  LinkBox(
+                                    width: 150,
+                                    height: 160,
+                                    route: '/details',
+                                    child: Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.start,
+                                      children: [
+                                        Image.asset(
+                                          'assets/images/Andys.png',
+                                        ),
+                                        Padding(
+                                          padding: const EdgeInsets.all(8.0),
+                                          child: Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceBetween,
+                                            children: [
+                                              Column(
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
+                                                mainAxisSize: MainAxisSize.min,
+                                                children: [
+                                                  HeaderText(
+                                                    text: "Andy's",
+                                                  ),
+                                                  HeaderText(
+                                                    text: 'Italian restaurant',
+                                                    size: 8,
+                                                  ),
+                                                ],
+                                              ),
+                                              Icon(Icons.favorite_border),
+                                            ],
+                                          ),
+                                        ),
+                                        Container(
+                                          height: 30,
+                                          decoration: BoxDecoration(
+                                              color: Colors.greenAccent,
+                                              borderRadius:
+                                                  BorderRadius.circular(10)),
+                                          child: TextButton(
+                                              onPressed: () {},
+                                              child: HeaderText(
+                                                text: "Make a rezervation",
+                                                size: 11,
+                                              )),
+                                        )
+                                      ],
+                                    ),
+                                  ),
+                                ],
                               ),
+                            ),
+                            SizedBox(
+                              height: 15,
                             ),
                           ],
                         ),
-                      ),
-                    );
-                  }),
-            ),
-          )
-        ],
+                      );
+                    }),
+              ),
+            )
+          ],
+        ),
       ),
     );
   }
