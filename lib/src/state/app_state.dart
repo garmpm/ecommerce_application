@@ -37,4 +37,9 @@ class ApplicationState extends ChangeNotifier {
     rezervationCount++;
     notifyListeners();
   }
+
+  void decrementCount() {
+    rezervationCount--;
+    notifyListeners();
+  }
 }

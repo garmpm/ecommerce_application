@@ -1,5 +1,6 @@
 import 'package:ecommerce_application/src/nav_frame.dart';
 import 'package:ecommerce_application/src/pages/product_detail_page.dart';
+import 'package:ecommerce_application/src/pages/rezervation_detail_page.dart';
 import 'package:ecommerce_application/src/settings/settings_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -150,7 +151,17 @@ class MyApp extends StatelessWidget {
                     builder: ((context, state) {
                       return ProductDetailPage();
                     }),
-                  )
+                  ),
+                  GoRoute(
+                    path: 'history/details',
+                    builder: ((context, state) {
+                      return RezervationDetailPage();
+                    }),
+                  ),
+                  GoRoute(
+                    path: 'placeholder',
+                    builder: ((context, state) => Placeholder()),
+                  ),
                 ],
               ),
             ],

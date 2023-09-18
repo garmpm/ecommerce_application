@@ -4,8 +4,28 @@ import 'package:ecommerce_application/src/widgets/link_box.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
   const HomePage({super.key});
+
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage>
+    with SingleTickerProviderStateMixin {
+  late TabController _tabController;
+
+  @override
+  void initState() {
+    _tabController = TabController(length: 2, vsync: this);
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    _tabController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -48,134 +68,96 @@ class HomePage extends StatelessWidget {
             SizedBox(
               height: 20,
             ),
+            TabBar(
+              controller: _tabController,
+              indicatorSize: TabBarIndicatorSize.label,
+              isScrollable: true,
+              tabAlignment: TabAlignment.start,
+              labelPadding: const EdgeInsets.only(
+                left: 0,
+                right: 20,
+              ),
+              tabs: [
+                Text('Restaurants'),
+                Text('Favourites'),
+              ],
+            ),
+            SizedBox(
+              height: 20,
+            ),
             HeaderText(text: 'Open Now:'),
             SizedBox(
               height: 20,
             ),
             Expanded(
-              child: Container(
-                height: 2000,
-                child: ListView.builder(
+                child: TabBarView(
+              controller: _tabController,
+              children: [
+                Container(
+                  height: 2000,
+                  child: GridView.builder(
                     physics: AlwaysScrollableScrollPhysics(),
-                    shrinkWrap: false,
-                    itemCount: 10,
+                    shrinkWrap: true,
+                    itemCount: 20,
+                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 2),
                     itemBuilder: (context, index) {
                       return Center(
                         child: Column(
                           children: [
                             Container(
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  LinkBox(
-                                    width: 150,
-                                    height: 160,
-                                    route: '/details',
-                                    child: Column(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.start,
-                                      children: [
-                                        Image.asset(
-                                          'assets/images/513.png',
-                                          height: 65,
-                                        ),
-                                        Padding(
-                                          padding: const EdgeInsets.all(8.0),
-                                          child: Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.spaceBetween,
+                              child: LinkBox(
+                                width: 150,
+                                height: 160,
+                                route: '/details',
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  children: [
+                                    Image.asset(
+                                      'assets/images/513.png',
+                                      height: 65,
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Column(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            mainAxisSize: MainAxisSize.min,
                                             children: [
-                                              Column(
-                                                crossAxisAlignment:
-                                                    CrossAxisAlignment.start,
-                                                mainAxisSize: MainAxisSize.min,
-                                                children: [
-                                                  HeaderText(
-                                                    text: '513',
-                                                  ),
-                                                  HeaderText(
-                                                    text: 'Italian restaurant',
-                                                    size: 8,
-                                                  ),
-                                                ],
+                                              HeaderText(
+                                                text: '513',
                                               ),
-                                              Icon(Icons.favorite_border),
+                                              HeaderText(
+                                                text: 'Italian restaurant',
+                                                size: 8,
+                                              ),
                                             ],
                                           ),
-                                        ),
-                                        Container(
-                                          height: 30,
-                                          decoration: BoxDecoration(
-                                              color: Colors.greenAccent,
-                                              borderRadius:
-                                                  BorderRadius.circular(10)),
-                                          child: TextButton(
-                                              onPressed: () {
-                                                appState.incrementCount();
-                                              },
-                                              child: HeaderText(
-                                                text: "Make a rezervation",
-                                                size: 11,
-                                              )),
-                                        )
-                                      ],
+                                          Icon(Icons.favorite_border),
+                                        ],
+                                      ),
                                     ),
-                                  ),
-                                  SizedBox(
-                                    width: 30,
-                                  ),
-                                  LinkBox(
-                                    width: 150,
-                                    height: 160,
-                                    route: '/details',
-                                    child: Column(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.start,
-                                      children: [
-                                        Image.asset(
-                                          'assets/images/Andys.png',
-                                        ),
-                                        Padding(
-                                          padding: const EdgeInsets.all(8.0),
-                                          child: Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.spaceBetween,
-                                            children: [
-                                              Column(
-                                                crossAxisAlignment:
-                                                    CrossAxisAlignment.start,
-                                                mainAxisSize: MainAxisSize.min,
-                                                children: [
-                                                  HeaderText(
-                                                    text: "Andy's",
-                                                  ),
-                                                  HeaderText(
-                                                    text: 'Italian restaurant',
-                                                    size: 8,
-                                                  ),
-                                                ],
-                                              ),
-                                              Icon(Icons.favorite_border),
-                                            ],
-                                          ),
-                                        ),
-                                        Container(
-                                          height: 30,
-                                          decoration: BoxDecoration(
-                                              color: Colors.greenAccent,
-                                              borderRadius:
-                                                  BorderRadius.circular(10)),
-                                          child: TextButton(
-                                              onPressed: () {},
-                                              child: HeaderText(
-                                                text: "Make a rezervation",
-                                                size: 11,
-                                              )),
-                                        )
-                                      ],
-                                    ),
-                                  ),
-                                ],
+                                    Container(
+                                      height: 30,
+                                      decoration: BoxDecoration(
+                                          color: Colors.greenAccent,
+                                          borderRadius:
+                                              BorderRadius.circular(10)),
+                                      child: TextButton(
+                                          onPressed: () {
+                                            appState.incrementCount();
+                                          },
+                                          child: HeaderText(
+                                            text: "Make a rezervation",
+                                            size: 11,
+                                          )),
+                                    )
+                                  ],
+                                ),
                               ),
                             ),
                             SizedBox(
@@ -184,9 +166,27 @@ class HomePage extends StatelessWidget {
                           ],
                         ),
                       );
-                    }),
-              ),
-            )
+                    },
+                  ),
+                ),
+                Center(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      HeaderText(text: 'No favorites'),
+                      SizedBox(
+                        height: 15,
+                      ),
+                      Text('Favorite a restaurant to see it here.'),
+                      SizedBox(
+                        height: 20,
+                      ),
+                      Image.asset('assets/images/not_found.png'),
+                    ],
+                  ),
+                ),
+              ],
+            )),
           ],
         ),
       ),

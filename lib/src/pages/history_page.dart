@@ -72,7 +72,7 @@ class HistoryPage extends StatelessWidget {
                             padding: const EdgeInsets.symmetric(vertical: 10),
                             child: LinkBox(
                               height: 175,
-                              route: '/details',
+                              route: '/history/details',
                               child: Padding(
                                 padding:
                                     const EdgeInsets.symmetric(horizontal: 12),
@@ -133,7 +133,5 @@ class HistoryPage extends StatelessWidget {
         ),
       );
     }
-
-    return const Placeholder();
   }
 }
