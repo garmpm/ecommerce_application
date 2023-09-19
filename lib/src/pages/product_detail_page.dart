@@ -1,3 +1,4 @@
+import 'package:auto_route/annotations.dart';
 import 'package:ecommerce_application/src/state/app_state.dart';
 import 'package:ecommerce_application/src/widgets/header_text.dart';
 import 'package:ecommerce_application/src/widgets/icon_text.dart';
@@ -5,6 +6,7 @@ import 'package:ecommerce_application/src/widgets/star_display.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+@RoutePage()
 class ProductDetailPage extends StatelessWidget {
   const ProductDetailPage({super.key});
 

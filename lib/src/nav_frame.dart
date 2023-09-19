@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:ecommerce_application/src/auth/auth.dart';
 import 'package:ecommerce_application/src/pages/history_page.dart';
 import 'package:ecommerce_application/src/pages/home_page.dart';
@@ -7,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
+@RoutePage()
 class NavFrame extends StatefulWidget {
   const NavFrame({super.key});
 
