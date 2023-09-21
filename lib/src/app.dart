@@ -1,6 +1,7 @@
 import 'package:ecommerce_application/src/nav_frame.dart';
 import 'package:ecommerce_application/src/pages/product_detail_page.dart';
 import 'package:ecommerce_application/src/pages/rezervation_detail_page.dart';
+import 'package:ecommerce_application/src/router.dart';
 import 'package:ecommerce_application/src/settings/settings_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -13,12 +14,13 @@ import 'settings/settings_view.dart';
 
 /// The Widget that configures your application.
 class MyApp extends StatelessWidget {
-  const MyApp({
+  MyApp({
     super.key,
     required this.settingsController,
   });
 
   final SettingsController settingsController;
+  final _appRouter = AppRouter();
 
   @override
   Widget build(BuildContext context) {
