@@ -1,0 +1,27 @@
+{
+    "restaurant": 
+    [
+        {
+            "id": 1,
+            "name": "513",
+            "category": "Italian restaurant",
+            "address": "Somewhere, Michigan",
+            "phoneNumber": "+373-673-23-243",
+            "rating": 4.5,
+            "favorited": false,
+            "logoImage": "assets/images/513.png",
+            "demoImage": "assets/images/photo1.png"
+        },
+        {
+            "id": 2,
+            "name": "Andy's",
+            "category": "Italian restaurant",
+            "address": "Nowhere, Michigan",
+            "phoneNumber": "+373-670-56-103",
+            "rating": 4.0,
+            "favorited": false,
+            "logoImage": "assets/images/Andys.png",
+            "demoImage": "assets/images/photo1.png"
+        }
+    ]
+}

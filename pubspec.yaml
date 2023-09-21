@@ -22,6 +22,7 @@ dependencies:
   provider: ^6.0.5
   connectivity_plus: ^2.3.0
   auto_route: ^7.8.3
+  path_provider: ^2.1.1
 
 dev_dependencies:
   flutter_test:
@@ -40,3 +41,4 @@ flutter:
   assets:
     # Add assets from the images directory to the application.
     - assets/images/
+    - assets/samples/restaurant.json

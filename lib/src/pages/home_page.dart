@@ -1,5 +1,6 @@
 import 'package:auto_route/annotations.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
+import 'package:ecommerce_application/src/models/restaurant.dart';
 import 'package:ecommerce_application/src/state/app_state.dart';
 import 'package:ecommerce_application/src/widgets/header_text.dart';
 import 'package:ecommerce_application/src/widgets/link_box.dart';
@@ -128,85 +129,149 @@ class _HomePageState extends State<HomePage>
                                   ],
                                 ),
                               )
-                            : GridView.builder(
-                                physics: AlwaysScrollableScrollPhysics(),
-                                shrinkWrap: true,
-                                itemCount: 20,
-                                gridDelegate:
-                                    SliverGridDelegateWithFixedCrossAxisCount(
-                                        crossAxisCount: 2),
-                                itemBuilder: (context, index) {
-                                  return Center(
-                                    child: Column(
-                                      children: [
-                                        LinkBox(
-                                          width: 150,
-                                          height: 160,
-                                          route: '/details',
+                            : FutureBuilder<RestaurantModel>(
+                                future: appState.initModel(),
+                                builder: ((context, snapshot) {
+                                  if (snapshot.hasData) {
+                                    return GridView.builder(
+                                      physics: AlwaysScrollableScrollPhysics(),
+                                      shrinkWrap: true,
+                                      itemCount:
+                                          snapshot.data!.restaurant!.length,
+                                      gridDelegate:
+                                          SliverGridDelegateWithFixedCrossAxisCount(
+                                              crossAxisCount: 2),
+                                      itemBuilder: (context, index) {
+                                        return Center(
                                           child: Column(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.start,
                                             children: [
-                                              Image.asset(
-                                                'assets/images/513.png',
-                                                height: 65,
-                                              ),
-                                              Padding(
-                                                padding:
-                                                    const EdgeInsets.all(8.0),
-                                                child: Row(
+                                              LinkBox(
+                                                width: 150,
+                                                height: 160,
+                                                route: '/details',
+                                                child: Column(
                                                   mainAxisAlignment:
-                                                      MainAxisAlignment
-                                                          .spaceBetween,
+                                                      MainAxisAlignment.start,
                                                   children: [
-                                                    Column(
-                                                      crossAxisAlignment:
-                                                          CrossAxisAlignment
-                                                              .start,
-                                                      mainAxisSize:
-                                                          MainAxisSize.min,
-                                                      children: [
-                                                        HeaderText(
-                                                          text: '513',
-                                                        ),
-                                                        HeaderText(
-                                                          text:
-                                                              'Italian restaurant',
-                                                          size: 8,
-                                                        ),
-                                                      ],
+                                                    Image.asset(
+                                                      snapshot
+                                                          .data!
+                                                          .restaurant![index]
+                                                          .logoImage!,
+                                                      height: 65,
                                                     ),
-                                                    Icon(Icons.favorite_border),
+                                                    Padding(
+                                                      padding:
+                                                          const EdgeInsets.all(
+                                                              5.0),
+                                                      child: Row(
+                                                        mainAxisAlignment:
+                                                            MainAxisAlignment
+                                                                .spaceBetween,
+                                                        children: [
+                                                          Column(
+                                                            crossAxisAlignment:
+                                                                CrossAxisAlignment
+                                                                    .start,
+                                                            mainAxisSize:
+                                                                MainAxisSize
+                                                                    .min,
+                                                            children: [
+                                                              HeaderText(
+                                                                text: snapshot
+                                                                    .data!
+                                                                    .restaurant![
+                                                                        index]
+                                                                    .name!,
+                                                              ),
+                                                              HeaderText(
+                                                                text: snapshot
+                                                                    .data!
+                                                                    .restaurant![
+                                                                        index]
+                                                                    .category!,
+                                                                size: 8,
+                                                              ),
+                                                            ],
+                                                          ),
+                                                          IconButton(
+                                                              onPressed: () {
+                                                                appState.toggleFavorite(
+                                                                    snapshot.data!
+                                                                            .restaurant![
+                                                                        index]);
+                                                                snapshot
+                                                                        .data!
+                                                                        .restaurant![
+                                                                            index]
+                                                                        .favorited =
+                                                                    !snapshot
+                                                                        .data!
+                                                                        .restaurant![
+                                                                            index]
+                                                                        .favorited!;
+                                                                print(snapshot
+                                                                    .data!
+                                                                    .restaurant![
+                                                                        index]
+                                                                    .favorited!);
+                                                              },
+                                                              icon: snapshot
+                                                                      .data!
+                                                                      .restaurant![
+                                                                          index]
+                                                                      .favorited!
+                                                                  ? Icon(
+                                                                      Icons
+                                                                          .favorite_outline,
+                                                                      color: Colors
+                                                                          .green,
+                                                                    )
+                                                                  : Icon(
+                                                                      Icons
+                                                                          .favorite_outline,
+                                                                      color: Colors
+                                                                          .grey,
+                                                                    )),
+                                                        ],
+                                                      ),
+                                                    ),
+                                                    Container(
+                                                      height: 30,
+                                                      decoration: BoxDecoration(
+                                                          color: Colors
+                                                              .greenAccent,
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(
+                                                                      10)),
+                                                      child: TextButton(
+                                                          onPressed: () {
+                                                            appState
+                                                                .incrementCount();
+                                                          },
+                                                          child: HeaderText(
+                                                            text:
+                                                                "Make a rezervation",
+                                                            size: 11,
+                                                          )),
+                                                    )
                                                   ],
                                                 ),
                                               ),
-                                              Container(
-                                                height: 30,
-                                                decoration: BoxDecoration(
-                                                    color: Colors.greenAccent,
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            10)),
-                                                child: TextButton(
-                                                    onPressed: () {
-                                                      appState.incrementCount();
-                                                    },
-                                                    child: HeaderText(
-                                                      text:
-                                                          "Make a rezervation",
-                                                      size: 11,
-                                                    )),
-                                              )
+                                              SizedBox(
+                                                height: 15,
+                                              ),
                                             ],
                                           ),
-                                        ),
-                                        SizedBox(
-                                          height: 15,
-                                        ),
-                                      ],
-                                    ),
-                                  );
-                                },
+                                        );
+                                      },
+                                    );
+                                  } else if (snapshot.hasError) {
+                                    return Text('Oh no...');
+                                  }
+                                  return const CircularProgressIndicator();
+                                }),
                               );
                       }),
                 ),
