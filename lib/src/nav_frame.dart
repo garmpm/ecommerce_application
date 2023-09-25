@@ -1,10 +1,11 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:ecommerce_application/src/auth/auth.dart';
+import 'package:ecommerce_application/src/aux/firebase_constants.dart';
 import 'package:ecommerce_application/src/pages/history_page.dart';
 import 'package:ecommerce_application/src/pages/home_page.dart';
 import 'package:ecommerce_application/src/state/app_state.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
@@ -53,14 +54,14 @@ class _NavFrameState extends State<NavFrame> {
               builder: (context, appState, _) => AuthFunc(
                   loggedIn: appState.loggedIn,
                   signOut: () {
-                    FirebaseAuth.instance.signOut();
+                    auth.signOut();
                   }),
             ),
             ListTile(
               title: Text('Settings'),
               leading: Icon(Icons.settings),
               onTap: () {
-                context.push('/settings');
+                Get.toNamed('/settings');
               },
             )
           ],

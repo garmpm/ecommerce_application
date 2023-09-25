@@ -13,7 +13,7 @@ class RestaurantModel {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = Map<String, dynamic>();
+    final Map<String, dynamic> data = <String, dynamic>{};
     if (restaurant != null) {
       data['restaurant'] = restaurant!.map((v) => v.toJson()).toList();
     }
@@ -56,7 +56,7 @@ class Restaurant {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = Map<String, dynamic>();
+    final Map<String, dynamic> data = <String, dynamic>{};
     data['id'] = id;
     data['name'] = name;
     data['category'] = category;

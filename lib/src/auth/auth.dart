@@ -1,6 +1,6 @@
 import 'package:ecommerce_application/src/widgets/styled_button.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
+import 'package:get/get.dart';
 
 class AuthFunc extends StatelessWidget {
   const AuthFunc({
@@ -20,7 +20,7 @@ class AuthFunc extends StatelessWidget {
           padding: const EdgeInsets.only(left: 24, bottom: 8),
           child: StyledButton(
               onPressed: () {
-                !loggedIn ? context.push('/sign-in') : signOut();
+                !loggedIn ? Get.toNamed('/register') : signOut();
               },
               child: !loggedIn ? const Text('Log In') : const Text('Logout')),
         ),
@@ -30,7 +30,7 @@ class AuthFunc extends StatelessWidget {
             padding: const EdgeInsets.only(left: 24, bottom: 8),
             child: StyledButton(
                 onPressed: () {
-                  context.push('/profile');
+                  Get.toNamed('/profile');
                 },
                 child: const Text('Profile')),
           ),

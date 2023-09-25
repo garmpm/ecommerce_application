@@ -1,5 +1,7 @@
+// ignore_for_file: must_be_immutable
+
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
+import 'package:get/get.dart';
 
 class LinkBox extends StatelessWidget {
   final Widget child;
@@ -19,7 +21,7 @@ class LinkBox extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        context.go(route);
+        Get.toNamed(route);
       },
       child: Container(
         height: height,
@@ -28,7 +30,7 @@ class LinkBox extends StatelessWidget {
             color: Colors.white,
             border: Border.all(color: Colors.grey),
             borderRadius: BorderRadius.circular(10),
-            boxShadow: [
+            boxShadow: const [
               BoxShadow(
                 blurRadius: 5,
                 spreadRadius: -3,

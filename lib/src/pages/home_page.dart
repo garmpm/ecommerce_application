@@ -89,7 +89,7 @@ class _HomePageState extends State<HomePage>
                 left: 0,
                 right: 20,
               ),
-              tabs: [
+              tabs: const [
                 Text('Restaurants'),
                 Text('Favourites'),
               ],
@@ -105,7 +105,7 @@ class _HomePageState extends State<HomePage>
                 child: TabBarView(
               controller: _tabController,
               children: [
-                Container(
+                SizedBox(
                   height: 2000,
                   child: StreamBuilder<ConnectivityResult>(
                       stream: connectivity.onConnectivityChanged,
@@ -148,7 +148,7 @@ class _HomePageState extends State<HomePage>
                                               LinkBox(
                                                 width: 150,
                                                 height: 160,
-                                                route: '/details',
+                                                route: '/home/details',
                                                 child: Column(
                                                   mainAxisAlignment:
                                                       MainAxisAlignment.start,

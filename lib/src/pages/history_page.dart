@@ -63,7 +63,7 @@ class HistoryPage extends StatelessWidget {
                 ),
                 HeaderText(text: 'Rezervations:'),
                 Expanded(
-                  child: Container(
+                  child: SizedBox(
                     height: 2000,
                     child: ListView.builder(
                         physics: AlwaysScrollableScrollPhysics(),

@@ -20,7 +20,7 @@ class ProductDetailPage extends StatelessWidget {
             Image.asset('assets/images/photo1.png'),
             Padding(
               padding: const EdgeInsets.all(25.0),
-              child: Container(
+              child: SizedBox(
                 height: 500,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,

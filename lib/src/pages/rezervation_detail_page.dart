@@ -50,7 +50,7 @@ class RezervationDetailPage extends StatelessWidget {
               ],
             ),
             Row(
-              children: [
+              children: const [
                 Text('Hall 2'),
                 SizedBox(
                   width: 10,
